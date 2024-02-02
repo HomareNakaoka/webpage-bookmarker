@@ -1,0 +1,14 @@
+doctype html 
+html(lang="ja")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    title Webpage-bookmarker
+  body
+    h1 Webpage-bookmarker
+    a(href="/logout") ログアウト
+    form(action="/posts", method="post")
+      div
+        textarea(name="content" cols="40" rows="4")
+      div
+        button(type="submit") 送信
