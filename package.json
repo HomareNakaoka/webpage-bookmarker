@@ -1,0 +1,10 @@
+{
+  "name": "webpage-bookmarker",
+  "version": "1.0.0",
+  "description": "WebページのタイトルとURLを保存します",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "license": "MIT"
+}
