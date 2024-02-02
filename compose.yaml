@@ -17,3 +17,5 @@ services:
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: webpage-bookmarker
       TZ: "Asia/Tokyo"
+    volumes:
+      - ../webpage-bookmarker-db:/var/lib/postgresql/data
