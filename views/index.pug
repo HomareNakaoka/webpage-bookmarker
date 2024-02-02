@@ -11,4 +11,13 @@ html(lang="ja")
       div
         textarea(name="content" cols="40" rows="4")
       div
+        h4 備考
+        textarea(name="note" cols="40" rows="2")
+      div
         button(type="submit") 送信
+    h2 ページ一覧
+    each post in posts
+      p 保存日時: #{post.createdAt}
+      p #{post.content}
+      p #{post.note}
+      hr
