@@ -17,7 +17,12 @@ html(lang="ja")
         button(type="submit") 送信
     h2 ページ一覧
     each post in posts
-      p 保存日時: #{post.createdAt}
-      p #{post.content}
-      p #{post.note}
-      hr
+      - const isDeletable = (user === post.postedBy)
+      if isDeletable
+        p 保存日時: #{post.createdAt}
+        p #{post.content}
+        p #{post.note}
+        form(action="/posts/delete" method="post")
+          input(type="hidden" name="id" value=post.id)
+          button(type="submit") 削除
+        hr
