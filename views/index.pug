@@ -6,6 +6,7 @@ html(lang="ja")
     title Webpage-bookmarker
   body
     h1 Webpage-bookmarker
+    p ログイン中: #{user}
     a(href="/logout") ログアウト
     form(action="/posts", method="post")
       div
@@ -17,8 +18,9 @@ html(lang="ja")
         button(type="submit") 送信
     h2 ページ一覧
     each post in posts
-      - const isDeletable = (user === post.postedBy)
-      if isDeletable
+      - const isAuthenticated = (user === post.postedBy || user === 'admin')
+      if isAuthenticated
+        p #{post.postedBy}
         p 保存日時: #{post.createdAt}
         p #{post.content}
         p #{post.note}
