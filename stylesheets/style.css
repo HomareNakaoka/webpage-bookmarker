@@ -1,0 +1,8 @@
+body.container {
+  padding-top: 70px;
+}
+.post-content,
+.post-note {
+  white-space: pre-wrap;
+  word-break: break-all;
+}
