@@ -9,6 +9,7 @@
   "license": "MIT",
   "dependencies": {
     "@prisma/client": "4.11.0",
+    "cookies": "0.8.0",
     "dayjs": "1.11.7",
     "http-auth": "4.2.0",
     "prisma": "4.11.0",
