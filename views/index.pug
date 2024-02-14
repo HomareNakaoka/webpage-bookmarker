@@ -61,7 +61,7 @@ html(lang="ja")
               small.card-text.text-muted.float-end(data-bs-toggle="tooltip" data-bs-placement="top" data-bs-html="true" title=tooltipTitle) #{post.relativeCreatedAt}
             a.float-end.btn.btn-primary.px-4(href=contentUrl target="blank") ページへ
             if post.note
-              p.card-text.post-note 備考: #{post.note}
+              p.card-text.post-note 備考： #{post.note}
           div.card-footer.d-flex.justify-content-end
             form(action="/posts/delete" method="post")
               input(type="hidden" name="id" value=post.id)
