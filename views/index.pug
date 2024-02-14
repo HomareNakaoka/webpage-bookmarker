@@ -26,9 +26,9 @@ html(lang="ja")
     p 上記の様に一行目にタイトル<br>二行目にURLを入力してボタンを押してください
     p 備考入力欄には保存したページに自由にメモを残せます。空欄でもOK
     div.p-4.bg-white
-      form.container-fluid.row.g-3(action="/posts", method="post")
+      form.container-fluid.row.g-3(action="/posts", method="post" name="content-form")
         div.col-12
-          textarea(name="content" cols="40" rows="4").form-control
+          textarea(name="content" cols="40" rows="4" placeholder="Ctrl(Command)+Enterで送信できます").form-control
           input(type="hidden" name="oneTimeToken" value=oneTimeToken)
         div.accordion(id="accordionExample")
           div.accordion-item
