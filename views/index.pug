@@ -9,6 +9,7 @@ html(lang="ja")
       integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
       crossorigin="anonymous"
       )
+    link(rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css")
     link(rel="stylesheet" href="style.css")
     title Webpage-bookmarker
   body.container.overflow-scroll
@@ -20,10 +21,15 @@ html(lang="ja")
           ul.dropdown-menu.dropdown-menu-end(aria-labelledby="menu")
             li
               a.dropdown-item(href="/logout") ログアウト
-    form.container-fluid(action="/posts", method="post")
-      div
-        textarea(name="content" cols="40" rows="4")
-        input(type="hidden" name="oneTimeToken" value=oneTimeToken)
+    h2 使い方
+    p Webpage-bookmarker<br>www.example.co.jp
+    p 上記の様に一行目にタイトル<br>二行目にURLを入力してボタンを押してください
+    p 備考入力欄には保存したページに自由にメモを残せます。空欄でもOK
+    div.p-4.bg-white
+      form.container-fluid.row.g-3(action="/posts", method="post")
+        div.col-12
+          textarea(name="content" cols="40" rows="4").form-control
+          input(type="hidden" name="oneTimeToken" value=oneTimeToken)
         div.accordion(id="accordionExample")
           div.accordion-item
             p.accordion-header
@@ -31,20 +37,30 @@ html(lang="ja")
             div.accordion-collapse.collapse(id="collapseOne" data-bs-parent="#accordionExample")
               div.accordion-body
                 textarea.container-fluid(name="note" cols="40" rows="2")
-      div
-        button(type="submit") 送信
+        div
+          button(type="submit").btn.btn-primary.float-end 保存する
     h2 ページ一覧
     each post in posts
       - const isAuthenticated = (user === post.postedBy || user === 'admin')
+      - const content = post.content.split(/\r\n|\n/)
+      - const contentTitle = content[0]
+      - const contentUrl = content[1]
+      - const cardClass = 'card my-3'
       if isAuthenticated
-        p 保存日時: #{post.createdAt}
-        p.post-content #{post.content}
-        p.post-note 備考: #{post.note}
-        form(action="/posts/delete" method="post")
-          input(type="hidden" name="id" value=post.id)
-          input(type="hidden" name="oneTimeToken" value=oneTimeToken)
-          button(type="submit") 削除
-        hr
+        div(class=cardClass)
+          div.card-body
+            div.d-flex.justify-content-between
+              h5.card-title.post-content-title #{contentTitle}
+              small.card-text.text-muted.float-end #{post.createdAt}
+            a.float-end.btn.btn-primary.px-4(href=contentUrl target="blank") ページへ
+            if post.note
+              p.card-text.post-note 備考: #{post.note}
+          div.card-footer.d-flex.justify-content-end
+            form(action="/posts/delete" method="post")
+              input(type="hidden" name="id" value=post.id)
+              input(type="hidden" name="oneTimeToken" value=oneTimeToken)
+              button.btn.btn-outline-danger.btn-sm(type="submit")
+                i.bi-trash
 
 script(
   src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
