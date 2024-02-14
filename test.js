@@ -18,5 +18,3 @@ const html = pug.renderFile('./views/index.pug', {
 
 assert(html.includes("&lt;script&gt;alert('test');&lt;/script&gt;"));
 console.log('test ok');
-
-const str = "正規表現でマッチさせる（URLとメールアドレス編） - きままに記録箱 https://katanugramer.hatenablog.com/entry/2020/07/05/132328 2024/2/5(月) 8時26分50秒";
