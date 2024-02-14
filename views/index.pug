@@ -51,7 +51,8 @@ html(lang="ja")
           div.card-body
             div.d-flex.justify-content-between
               h5.card-title.post-content-title #{contentTitle}
-              small.card-text.text-muted.float-end #{post.createdAt}
+              - const tooltipTitle = `<small>${post.formattedCreatedAt}</small>`
+              small.card-text.text-muted.float-end(data-bs-toggle="tooltip" data-bs-placement="top" data-bs-html="true" title=tooltipTitle) #{post.relativeCreatedAt}
             a.float-end.btn.btn-primary.px-4(href=contentUrl target="blank") ページへ
             if post.note
               p.card-text.post-note 備考: #{post.note}
@@ -67,3 +68,4 @@ script(
   integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
   crossorigin="anonymous"
   )
+script(src="webpage-bookmarker-util.js")
