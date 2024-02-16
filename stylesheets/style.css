@@ -7,3 +7,7 @@ body.container {
   word-break: break-all;
   max-width: 80%;
 }
+#validation-message {
+  color: #f00;
+  margin: 0 0 2px 10px;
+}
