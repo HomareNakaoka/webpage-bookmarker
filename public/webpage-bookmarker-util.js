@@ -11,19 +11,15 @@ const formElement = document.forms['content-form'];
 const contentTextareaElement = formElement.elements['content'];
 const noteTextareaElement = formElement.elements['note'];
 contentTextareaElement.addEventListener('keydown', (event) => {
-  if (isPressedSubmitKey(event)) {
-    if (postContentValidation()) {
-      event.preventDefault();
-      formElement.submit();
-    }
+  if (isPressedSubmitKey(event) && postContentValidation()) {
+    event.preventDefault();
+    formElement.submit();
   }
 });
 noteTextareaElement.addEventListener('keydown', (event) => {
-  if (isPressedSubmitKey(event)) {
-    if (postContentValidation()) {
-      event.preventDefault();
-      formElement.submit();
-    }
+  if (isPressedSubmitKey(event) && postContentValidation()) {
+    event.preventDefault();
+    formElement.submit();
   }
 });
 const form = document.getElementById('content-form');
