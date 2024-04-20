@@ -41,6 +41,8 @@ html(lang="ja")
         div
           button(type="submit").btn.btn-primary.float-end 保存する
     h2 ページ一覧
+    - const totalCountText = user === 'admin' ? adminTotalCount : totalCount
+      p レコード #{totalCountText} 件
     div.dropdown.d-flex.justify-content-end
       - const currentOrderText = currentOrder === 'desc' ? '新しい順' : '古い順'
       div.dropdown-toggle(type="button" data-bs-toggle="dropdown" aria-expanded="false") 現在の並び：#{currentOrderText}
@@ -53,6 +55,7 @@ html(lang="ja")
       - const contentTitle = content[0]
       - const contentUrl = content[1]
       - const cardClass = 'card my-3'
+      - const adminClass = user === 'admin' ? 'justify-content-between' : 'justify-content-end'
       if isAuthenticated
         div(class=cardClass)
           div.card-body
@@ -62,8 +65,10 @@ html(lang="ja")
               small.card-text.text-muted.float-end(data-bs-toggle="tooltip" data-bs-placement="top" data-bs-html="true" title=tooltipTitle) #{post.relativeCreatedAt}
             a.float-end.btn.btn-primary.px-4(href=contentUrl target="blank") ページへ
             if post.note
-              p.card-text.post-note 備考： #{post.note}
-          div.card-footer.d-flex.justify-content-end
+              p.card-text.fs-6.post-note 備考： #{post.note}
+          div.card-footer.d-flex(class=adminClass)
+            if user === 'admin'
+              p.card-text User by : #{post.postedBy}
             form(action="/posts/delete" method="post")
               input(type="hidden" name="id" value=post.id)
               input(type="hidden" name="oneTimeToken" value=oneTimeToken)
